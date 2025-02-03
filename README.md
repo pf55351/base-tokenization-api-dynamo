@@ -1,7 +1,7 @@
-# FHP Tokenization Api
+# FHP Tokenization Api - DynamoDB
 
 This software is provided "as is" without any warranties, express or implied, including but not limited to the implied warranties of merchantability and fitness for a particular purpose. The **AWS Lambda** functions, developed with **TypeScript** and deployed via the **Serverless framework**, are designed to tokenize files on the **Algorand** blockchain.
-Files will be stored on **Amazon S3**, and a set of transaction-related data is recorded in a **MySQL database**.
+Files will be stored on **Amazon S3**, and a set of transaction-related data is recorded in a **DynamoDB**.
 
 **This release is recommended for mono wallet installations**
 
