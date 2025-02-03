@@ -1,0 +1,21 @@
+{
+  "id": "87848eea-c3df-4722-923c-e189215d3b1a",
+  "name": "Local",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/dev",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "apiKey",
+      "value": "test-api-key",
+      "type": "default",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2025-02-03T00:11:00.118Z",
+  "_postman_exported_using": "Postman/11.23.3"
+}

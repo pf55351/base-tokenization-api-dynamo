@@ -1,0 +1,714 @@
+{
+  "components": {
+    "schemas": {
+      "ApiAuthLoginPayload": {
+        "properties": {
+          "api_key": { "description": "API Key", "type": "string" }
+        },
+        "required": ["api_key"],
+        "type": "object"
+      },
+      "ApiAuthLoginResponse": {
+        "properties": {
+          "message": { "description": "Message", "type": "string" },
+          "payload": { "description": "Response Payload", "type": "object" },
+          "status_code": { "description": "Status Code", "type": "integer" }
+        },
+        "required": ["message", "payload", "status_code"],
+        "type": "object"
+      },
+      "FileSummary": {
+        "properties": {
+          "asset_id": { "type": "integer" },
+          "created_at": { "type": "string" },
+          "description": { "type": "string" },
+          "is_download_enabled": { "type": "boolean" },
+          "is_forward_enabled": { "type": "boolean" },
+          "is_receive_enabled": { "type": "boolean" },
+          "is_sign_enabled": { "type": "boolean" },
+          "metadata_url": { "type": "string" },
+          "mimetype": { "type": "string" },
+          "name": { "type": "string" },
+          "sha256": { "type": "string" },
+          "uuid": { "type": "string" }
+        },
+        "required": [
+          "asset_id",
+          "created_at",
+          "description",
+          "is_download_enabled",
+          "is_forward_enabled",
+          "is_receive_enabled",
+          "is_sign_enabled",
+          "metadata_url",
+          "mimetype",
+          "name",
+          "sha256",
+          "uuid"
+        ],
+        "type": "object"
+      },
+      "FileTokenizePayload": {
+        "properties": {
+          "description": {
+            "description": "File description",
+            "type": "string"
+          },
+          "file": {
+            "description": "File to notarize",
+            "format": "binary",
+            "type": "string"
+          },
+          "folder_uuid": { "description": "Folder UUID", "type": "string" },
+          "is_file_stored": {
+            "description": "Is file stored?",
+            "type": "boolean"
+          },
+          "name": { "description": "File name", "type": "string" }
+        },
+        "required": ["description", "file", "is_file_stored", "name"],
+        "type": "object"
+      },
+      "FileTokenizeResponse": {
+        "properties": {
+          "message": { "description": "Message", "type": "string" },
+          "payload": {
+            "allOf": [{ "$ref": "#/components/schemas/FileTokenizeResponseData" }],
+            "description": "Response Data"
+          },
+          "status_code": { "description": "Status Code", "type": "integer" }
+        },
+        "required": ["message", "payload", "status_code"],
+        "type": "object"
+      },
+      "FileTokenizeResponseData": {
+        "properties": {
+          "data": { "$ref": "#/components/schemas/Tokenization" }
+        },
+        "required": ["data"],
+        "type": "object"
+      },
+      "FileVerifyRequest": {
+        "properties": {
+          "file": {
+            "description": "File to verify",
+            "format": "binary",
+            "type": "string"
+          }
+        },
+        "required": ["file"],
+        "type": "object"
+      },
+      "FileVerifyResponse": {
+        "properties": {
+          "message": { "description": "Message", "type": "string" },
+          "payload": {
+            "allOf": [{ "$ref": "#/components/schemas/FileVerifyResponseData" }],
+            "description": "Response Payload"
+          },
+          "status_code": { "description": "Status Code", "type": "integer" }
+        },
+        "required": ["message", "payload", "status_code"],
+        "type": "object"
+      },
+      "FileVerifyResponseData": {
+        "properties": {
+          "data": { "$ref": "#/components/schemas/FileVerifySummary" }
+        },
+        "required": ["data"],
+        "type": "object"
+      },
+      "FileVerifySummary": {
+        "properties": {
+          "asset_id": { "description": "Asset ID", "type": "integer" },
+          "description": { "description": "Description", "type": "string" },
+          "metadata_url": { "description": "Metadata URL", "type": "string" },
+          "name": { "description": "Name", "type": "string" },
+          "sha256": { "description": "File Hash SHA256", "type": "string" }
+        },
+        "required": ["asset_id", "description", "metadata_url", "name", "sha256"],
+        "type": "object"
+      },
+      "FilesIndexResponse": {
+        "properties": {
+          "message": { "description": "Message", "type": "string" },
+          "payload": {
+            "allOf": [{ "$ref": "#/components/schemas/FilesIndexResponseData" }],
+            "description": "Response Payload"
+          },
+          "status_code": { "description": "Status Code", "type": "integer" }
+        },
+        "required": ["message", "payload", "status_code"],
+        "type": "object"
+      },
+      "FilesIndexResponseData": {
+        "properties": {
+          "data": {
+            "items": { "$ref": "#/components/schemas/FilesPerFolder" },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "FilesPerFolder": {
+        "properties": {
+          "files": {
+            "items": { "$ref": "#/components/schemas/FileSummary" },
+            "type": "array"
+          },
+          "folder": { "type": "string" }
+        },
+        "required": ["folder"],
+        "type": "object"
+      },
+      "Folder": {
+        "properties": {
+          "name": { "type": "string" },
+          "uuid": { "type": "string" }
+        },
+        "required": ["name", "uuid"],
+        "type": "object"
+      },
+      "FolderAddPayload": {
+        "properties": { "folder_name": { "type": "string" } },
+        "required": ["folder_name"],
+        "type": "object"
+      },
+      "FolderAddPayloadData": {
+        "properties": { "data": { "$ref": "#/components/schemas/Folder" } },
+        "type": "object"
+      },
+      "FolderAddResponse": {
+        "properties": {
+          "message": { "description": "Message", "type": "string" },
+          "payload": {
+            "allOf": [{ "$ref": "#/components/schemas/FolderAddPayloadData" }],
+            "description": "Response Payload"
+          },
+          "status_code": { "description": "Status Code", "type": "integer" }
+        },
+        "required": ["message", "payload", "status_code"],
+        "type": "object"
+      },
+      "FoldersIndexResponse": {
+        "properties": {
+          "message": { "description": "Message", "type": "string" },
+          "payload": {
+            "items": {
+              "allOf": [{ "$ref": "#/components/schemas/FoldersIndexResponseData" }],
+              "description": "Response Payload"
+            },
+            "type": "array"
+          },
+          "status_code": { "description": "Status Code", "type": "integer" }
+        },
+        "required": ["message", "status_code"],
+        "type": "object"
+      },
+      "FoldersIndexResponseData": {
+        "properties": { "data": { "$ref": "#/components/schemas/Folder" } },
+        "type": "object"
+      },
+      "HTTPError": {
+        "properties": {
+          "error": { "type": "string" },
+          "payload": { "type": "object" },
+          "status_code": { "type": "integer" }
+        }
+      },
+      "Tokenization": {
+        "properties": {
+          "asset_id": { "description": "Asset ID", "type": "integer" },
+          "description": {
+            "description": "File Description",
+            "type": "string"
+          },
+          "folder": { "description": "Folder UUID", "type": "string" },
+          "is_file_stored": {
+            "description": "Is file stored?",
+            "type": "boolean"
+          },
+          "name": { "description": "File Name", "type": "string" },
+          "sha256": { "description": "File SHA256", "type": "string" }
+        },
+        "required": ["asset_id", "description", "folder", "is_file_stored", "name", "sha256"],
+        "type": "object"
+      }
+    },
+    "securitySchemes": { "bearer_auth": { "scheme": "bearer", "type": "http" } }
+  },
+  "info": { "title": "APIFlask", "version": "0.1.0" },
+  "openapi": "3.0.3",
+  "paths": {
+    "/api/auth/login": {
+      "post": {
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ApiAuthLoginPayload" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiAuthLoginResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "Handles the user login process.",
+        "tags": ["Auth"]
+      }
+    },
+    "/api/file/tokenize": {
+      "post": {
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": { "$ref": "#/components/schemas/FileTokenizePayload" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileTokenizeResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Authentication error"
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Payment Required"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Not Found"
+          },
+          "419": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Session Expired"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [{ "bearer_auth": [] }],
+        "summary": "Handles the tokenization process of a file.",
+        "tags": ["File"]
+      }
+    },
+    "/api/file/verify": {
+      "post": {
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": { "$ref": "#/components/schemas/FileVerifyRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FileVerifyResponse" }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "summary": "Handles the verification process of a file.",
+        "tags": ["File"]
+      }
+    },
+    "/api/file/{file_uuid}/certificate/download": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "file_uuid",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": { "application/json": { "schema": {} } },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Not Found"
+          },
+          "419": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Session Expired"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [{ "bearer_auth": [] }],
+        "summary": "Handles the download process of the tokenization certificate.",
+        "tags": ["File"]
+      }
+    },
+    "/api/file/{file_uuid}/download": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "file_uuid",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": { "application/json": { "schema": {} } },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Not Found"
+          },
+          "419": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Session Expired"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [{ "bearer_auth": [] }],
+        "summary": "Handles the download process of a file.",
+        "tags": ["File"]
+      }
+    },
+    "/api/files": {
+      "get": {
+        "parameters": [
+          {
+            "description": "If True, returns the archived files.",
+            "in": "query",
+            "name": "archived",
+            "required": false,
+            "schema": { "type": "boolean" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FilesIndexResponse" }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Authentication error"
+          },
+          "419": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Session Expired"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [{ "bearer_auth": [] }],
+        "summary": "Fetches all the (archived OR non-archived) user files.",
+        "tags": ["Files"]
+      }
+    },
+    "/api/folder/add": {
+      "post": {
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/FolderAddPayload" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FolderAddResponse" }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Authentication error"
+          },
+          "419": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Session Expired"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [{ "bearer_auth": [] }],
+        "summary": "Handles the folder creation process.",
+        "tags": ["Folder"]
+      }
+    },
+    "/api/folders": {
+      "get": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FoldersIndexResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Authentication error"
+          },
+          "419": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Session Expired"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPError" }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [{ "bearer_auth": [] }],
+        "summary": "Fetches all the folders owned by the user.",
+        "tags": ["Folders"]
+      }
+    }
+  },
+  "servers": [{ "name": "Base URL", "url": "https://api-test.toknox.com" }],
+  "tags": [
+    { "name": "Auth" },
+    { "name": "File" },
+    { "name": "Files" },
+    { "name": "Folder" },
+    { "name": "Folders" }
+  ]
+}

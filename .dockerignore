@@ -1,0 +1,17 @@
+.env
+.env-deploy
+.env-example
+.env-local
+docs
+.serverless/
+.git/
+.gitignore
+migrations/
+docker/
+*.md
+*.cjs
+node_modules/*
+docs/*
+*mjs
+src/orm/prisma/.env
+.dockerignore

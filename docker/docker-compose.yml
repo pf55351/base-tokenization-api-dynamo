@@ -1,0 +1,32 @@
+services:
+  serverless:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: serverless:latest
+    container_name: serverless
+    restart: always
+    command: serverless offline --host 0.0.0.0 --stage dev
+    ports:
+      - 3000:3000
+    depends_on:
+      - dynamodb
+    networks:
+      - serverless-network
+    volumes:
+      - ~/.aws/credentials:/root/.aws/credentials
+  dynamodb:
+    image: amazon/dynamodb-local
+    container_name: dynamodb-local
+    ports:
+      - '8000:8000'
+    restart: always
+    networks:
+      - serverless-network
+
+networks:
+  serverless-network:
+    driver: bridge
+
+volumes:
+  mysql_data:

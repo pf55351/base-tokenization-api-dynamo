@@ -1,0 +1,2491 @@
+{
+  "info": {
+    "_postman_id": "84adb2df-fee7-48dd-819f-bc619cff7858",
+    "name": "BaseTokenizeApi",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "25986042"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "file",
+          "item": [
+            {
+              "name": "tokenize",
+              "item": [
+                {
+                  "name": "Handles the tokenization process of a file.",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "key",
+                          "value": "X-API-KEY",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "key": "description",
+                          "value": "<string>",
+                          "description": "(Required) File description",
+                          "type": "text"
+                        },
+                        {
+                          "key": "file",
+                          "description": "(Required) File to notarize",
+                          "type": "file",
+                          "src": []
+                        },
+                        {
+                          "key": "is_file_stored",
+                          "value": "<boolean>",
+                          "description": "(Required) Is file stored?",
+                          "type": "text"
+                        },
+                        {
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) File name",
+                          "type": "text"
+                        },
+                        {
+                          "key": "folder_uuid",
+                          "value": "<string>",
+                          "description": "Folder UUID",
+                          "type": "text",
+                          "disabled": true
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/file/tokenize",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["api", "file", "tokenize"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "key": "description",
+                              "value": "<string>",
+                              "description": "(Required) File description",
+                              "type": "text"
+                            },
+                            {
+                              "key": "file",
+                              "description": "(Required) File to notarize",
+                              "type": "file",
+                              "src": []
+                            },
+                            {
+                              "key": "is_file_stored",
+                              "value": "<boolean>",
+                              "description": "(Required) Is file stored?",
+                              "type": "text"
+                            },
+                            {
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) File name",
+                              "type": "text"
+                            },
+                            {
+                              "key": "folder_uuid",
+                              "value": "<string>",
+                              "description": "Folder UUID",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/file/tokenize",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "file", "tokenize"]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"message\": \"<string>\",\n  \"payload\": {\n    \"data\": {\n      \"asset_id\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"folder\": \"<string>\",\n      \"is_file_stored\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"sha256\": \"<string>\"\n    }\n  },\n  \"status_code\": \"<integer>\"\n}"
+                    },
+                    {
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "key": "description",
+                              "value": "<string>",
+                              "description": "(Required) File description",
+                              "type": "text"
+                            },
+                            {
+                              "key": "file",
+                              "description": "(Required) File to notarize",
+                              "type": "file",
+                              "src": []
+                            },
+                            {
+                              "key": "is_file_stored",
+                              "value": "<boolean>",
+                              "description": "(Required) Is file stored?",
+                              "type": "text"
+                            },
+                            {
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) File name",
+                              "type": "text"
+                            },
+                            {
+                              "key": "folder_uuid",
+                              "value": "<string>",
+                              "description": "Folder UUID",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/file/tokenize",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "file", "tokenize"]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                    },
+                    {
+                      "name": "Authentication error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "key": "description",
+                              "value": "<string>",
+                              "description": "(Required) File description",
+                              "type": "text"
+                            },
+                            {
+                              "key": "file",
+                              "description": "(Required) File to notarize",
+                              "type": "file",
+                              "src": []
+                            },
+                            {
+                              "key": "is_file_stored",
+                              "value": "<boolean>",
+                              "description": "(Required) Is file stored?",
+                              "type": "text"
+                            },
+                            {
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) File name",
+                              "type": "text"
+                            },
+                            {
+                              "key": "folder_uuid",
+                              "value": "<string>",
+                              "description": "Folder UUID",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/file/tokenize",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "file", "tokenize"]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                    },
+                    {
+                      "name": "Payment Required",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "key": "description",
+                              "value": "<string>",
+                              "description": "(Required) File description",
+                              "type": "text"
+                            },
+                            {
+                              "key": "file",
+                              "description": "(Required) File to notarize",
+                              "type": "file",
+                              "src": []
+                            },
+                            {
+                              "key": "is_file_stored",
+                              "value": "<boolean>",
+                              "description": "(Required) Is file stored?",
+                              "type": "text"
+                            },
+                            {
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) File name",
+                              "type": "text"
+                            },
+                            {
+                              "key": "folder_uuid",
+                              "value": "<string>",
+                              "description": "Folder UUID",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/file/tokenize",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "file", "tokenize"]
+                        }
+                      },
+                      "status": "Payment Required",
+                      "code": 402,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                    },
+                    {
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "key": "description",
+                              "value": "<string>",
+                              "description": "(Required) File description",
+                              "type": "text"
+                            },
+                            {
+                              "key": "file",
+                              "description": "(Required) File to notarize",
+                              "type": "file",
+                              "src": []
+                            },
+                            {
+                              "key": "is_file_stored",
+                              "value": "<boolean>",
+                              "description": "(Required) Is file stored?",
+                              "type": "text"
+                            },
+                            {
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) File name",
+                              "type": "text"
+                            },
+                            {
+                              "key": "folder_uuid",
+                              "value": "<string>",
+                              "description": "Folder UUID",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/file/tokenize",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "file", "tokenize"]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                    },
+                    {
+                      "name": "Session Expired",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "key": "description",
+                              "value": "<string>",
+                              "description": "(Required) File description",
+                              "type": "text"
+                            },
+                            {
+                              "key": "file",
+                              "description": "(Required) File to notarize",
+                              "type": "file",
+                              "src": []
+                            },
+                            {
+                              "key": "is_file_stored",
+                              "value": "<boolean>",
+                              "description": "(Required) Is file stored?",
+                              "type": "text"
+                            },
+                            {
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) File name",
+                              "type": "text"
+                            },
+                            {
+                              "key": "folder_uuid",
+                              "value": "<string>",
+                              "description": "Folder UUID",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/file/tokenize",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "file", "tokenize"]
+                        }
+                      },
+                      "code": 419,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                    },
+                    {
+                      "name": "Unprocessable Entity",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "key": "description",
+                              "value": "<string>",
+                              "description": "(Required) File description",
+                              "type": "text"
+                            },
+                            {
+                              "key": "file",
+                              "description": "(Required) File to notarize",
+                              "type": "file",
+                              "src": []
+                            },
+                            {
+                              "key": "is_file_stored",
+                              "value": "<boolean>",
+                              "description": "(Required) Is file stored?",
+                              "type": "text"
+                            },
+                            {
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) File name",
+                              "type": "text"
+                            },
+                            {
+                              "key": "folder_uuid",
+                              "value": "<string>",
+                              "description": "Folder UUID",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/file/tokenize",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "file", "tokenize"]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                    },
+                    {
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "key": "description",
+                              "value": "<string>",
+                              "description": "(Required) File description",
+                              "type": "text"
+                            },
+                            {
+                              "key": "file",
+                              "description": "(Required) File to notarize",
+                              "type": "file",
+                              "src": []
+                            },
+                            {
+                              "key": "is_file_stored",
+                              "value": "<boolean>",
+                              "description": "(Required) Is file stored?",
+                              "type": "text"
+                            },
+                            {
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) File name",
+                              "type": "text"
+                            },
+                            {
+                              "key": "folder_uuid",
+                              "value": "<string>",
+                              "description": "Folder UUID",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/file/tokenize",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "file", "tokenize"]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "verify",
+              "item": [
+                {
+                  "name": "Handles the verification process of a file.",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "key",
+                          "value": "X-API-KEY",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "key": "file",
+                          "description": "(Required) File to verify",
+                          "type": "file",
+                          "src": []
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/file/verify",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["api", "file", "verify"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "key": "file",
+                              "description": "(Required) File to verify",
+                              "type": "file",
+                              "src": []
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/file/verify",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "file", "verify"]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"message\": \"<string>\",\n  \"payload\": {\n    \"data\": {\n      \"asset_id\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"metadata_url\": \"<string>\",\n      \"name\": \"<string>\",\n      \"sha256\": \"<string>\"\n    }\n  },\n  \"status_code\": \"<integer>\"\n}"
+                    },
+                    {
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "key": "file",
+                              "description": "(Required) File to verify",
+                              "type": "file",
+                              "src": []
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/file/verify",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "file", "verify"]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                    },
+                    {
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "key": "file",
+                              "description": "(Required) File to verify",
+                              "type": "file",
+                              "src": []
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/file/verify",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "file", "verify"]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                    },
+                    {
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "key": "file",
+                              "description": "(Required) File to verify",
+                              "type": "file",
+                              "src": []
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/file/verify",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "file", "verify"]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "{file_uuid}",
+              "item": [
+                {
+                  "name": "certificate",
+                  "item": [
+                    {
+                      "name": "download",
+                      "item": [
+                        {
+                          "name": "Handles the download process of the tokenization certificate.",
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "key",
+                                  "value": "X-API-KEY",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/file/:file_uuid/certificate/download",
+                              "host": ["{{baseUrl}}"],
+                              "path": ["api", "file", ":file_uuid", "certificate", "download"],
+                              "variable": [
+                                {
+                                  "key": "file_uuid",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>",
+                                    "description": "Added as a part of security scheme: bearer"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/file/:file_uuid/certificate/download",
+                                  "host": ["{{baseUrl}}"],
+                                  "path": ["api", "file", ":file_uuid", "certificate", "download"],
+                                  "variable": [
+                                    {
+                                      "key": "file_uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{}"
+                            },
+                            {
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>",
+                                    "description": "Added as a part of security scheme: bearer"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/file/:file_uuid/certificate/download",
+                                  "host": ["{{baseUrl}}"],
+                                  "path": ["api", "file", ":file_uuid", "certificate", "download"],
+                                  "variable": [
+                                    {
+                                      "key": "file_uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                            },
+                            {
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>",
+                                    "description": "Added as a part of security scheme: bearer"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/file/:file_uuid/certificate/download",
+                                  "host": ["{{baseUrl}}"],
+                                  "path": ["api", "file", ":file_uuid", "certificate", "download"],
+                                  "variable": [
+                                    {
+                                      "key": "file_uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                            },
+                            {
+                              "name": "Session Expired",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>",
+                                    "description": "Added as a part of security scheme: bearer"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/file/:file_uuid/certificate/download",
+                                  "host": ["{{baseUrl}}"],
+                                  "path": ["api", "file", ":file_uuid", "certificate", "download"],
+                                  "variable": [
+                                    {
+                                      "key": "file_uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "code": 419,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                            },
+                            {
+                              "name": "Internal Server Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>",
+                                    "description": "Added as a part of security scheme: bearer"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/file/:file_uuid/certificate/download",
+                                  "host": ["{{baseUrl}}"],
+                                  "path": ["api", "file", ":file_uuid", "certificate", "download"],
+                                  "variable": [
+                                    {
+                                      "key": "file_uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "download",
+                  "item": [
+                    {
+                      "name": "Handles the download process of a file.",
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "key",
+                              "value": "X-API-KEY",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/file/:file_uuid/download",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "file", ":file_uuid", "download"],
+                          "variable": [
+                            {
+                              "key": "file_uuid",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer <token>",
+                                "description": "Added as a part of security scheme: bearer"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/file/:file_uuid/download",
+                              "host": ["{{baseUrl}}"],
+                              "path": ["api", "file", ":file_uuid", "download"],
+                              "variable": [
+                                {
+                                  "key": "file_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{}"
+                        },
+                        {
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer <token>",
+                                "description": "Added as a part of security scheme: bearer"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/file/:file_uuid/download",
+                              "host": ["{{baseUrl}}"],
+                              "path": ["api", "file", ":file_uuid", "download"],
+                              "variable": [
+                                {
+                                  "key": "file_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                        },
+                        {
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer <token>",
+                                "description": "Added as a part of security scheme: bearer"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/file/:file_uuid/download",
+                              "host": ["{{baseUrl}}"],
+                              "path": ["api", "file", ":file_uuid", "download"],
+                              "variable": [
+                                {
+                                  "key": "file_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                        },
+                        {
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer <token>",
+                                "description": "Added as a part of security scheme: bearer"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/file/:file_uuid/download",
+                              "host": ["{{baseUrl}}"],
+                              "path": ["api", "file", ":file_uuid", "download"],
+                              "variable": [
+                                {
+                                  "key": "file_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                        },
+                        {
+                          "name": "Session Expired",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer <token>",
+                                "description": "Added as a part of security scheme: bearer"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/file/:file_uuid/download",
+                              "host": ["{{baseUrl}}"],
+                              "path": ["api", "file", ":file_uuid", "download"],
+                              "variable": [
+                                {
+                                  "key": "file_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "code": 419,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                        },
+                        {
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer <token>",
+                                "description": "Added as a part of security scheme: bearer"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/file/:file_uuid/download",
+                              "host": ["{{baseUrl}}"],
+                              "path": ["api", "file", ":file_uuid", "download"],
+                              "variable": [
+                                {
+                                  "key": "file_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "file",
+                  "item": [
+                    {
+                      "name": "Handles the download process of a file.",
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "key",
+                              "value": "X-API-KEY",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/file/:file_uuid",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "file", ":file_uuid"],
+                          "variable": [
+                            {
+                              "key": "file_uuid",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "name": "Successful Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer <token>",
+                                "description": "Added as a part of security scheme: bearer"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/file/:file_uuid/download",
+                              "host": ["{{baseUrl}}"],
+                              "path": ["api", "file", ":file_uuid", "download"],
+                              "variable": [
+                                {
+                                  "key": "file_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{}"
+                        },
+                        {
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer <token>",
+                                "description": "Added as a part of security scheme: bearer"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/file/:file_uuid/download",
+                              "host": ["{{baseUrl}}"],
+                              "path": ["api", "file", ":file_uuid", "download"],
+                              "variable": [
+                                {
+                                  "key": "file_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                        },
+                        {
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer <token>",
+                                "description": "Added as a part of security scheme: bearer"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/file/:file_uuid/download",
+                              "host": ["{{baseUrl}}"],
+                              "path": ["api", "file", ":file_uuid", "download"],
+                              "variable": [
+                                {
+                                  "key": "file_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                        },
+                        {
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer <token>",
+                                "description": "Added as a part of security scheme: bearer"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/file/:file_uuid/download",
+                              "host": ["{{baseUrl}}"],
+                              "path": ["api", "file", ":file_uuid", "download"],
+                              "variable": [
+                                {
+                                  "key": "file_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                        },
+                        {
+                          "name": "Session Expired",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer <token>",
+                                "description": "Added as a part of security scheme: bearer"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/file/:file_uuid/download",
+                              "host": ["{{baseUrl}}"],
+                              "path": ["api", "file", ":file_uuid", "download"],
+                              "variable": [
+                                {
+                                  "key": "file_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "code": 419,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                        },
+                        {
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer <token>",
+                                "description": "Added as a part of security scheme: bearer"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/file/:file_uuid/download",
+                              "host": ["{{baseUrl}}"],
+                              "path": ["api", "file", ":file_uuid", "download"],
+                              "variable": [
+                                {
+                                  "key": "file_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "files",
+          "item": [
+            {
+              "name": "Fetches all the (archived OR non-archived) user files.",
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "key",
+                      "value": "X-API-KEY",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/files?search=<string>",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "files"],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/files?archived=<boolean>",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["api", "files"],
+                      "query": [
+                        {
+                          "key": "archived",
+                          "value": "<boolean>",
+                          "description": "If True, returns the archived files."
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"message\": \"<string>\",\n  \"payload\": {\n    \"data\": [\n      {\n        \"folder\": \"<string>\",\n        \"files\": [\n          {\n            \"asset_id\": \"<integer>\",\n            \"created_at\": \"<string>\",\n            \"description\": \"<string>\",\n            \"is_download_enabled\": \"<boolean>\",\n            \"is_forward_enabled\": \"<boolean>\",\n            \"is_receive_enabled\": \"<boolean>\",\n            \"is_sign_enabled\": \"<boolean>\",\n            \"metadata_url\": \"<string>\",\n            \"mimetype\": \"<string>\",\n            \"name\": \"<string>\",\n            \"sha256\": \"<string>\",\n            \"uuid\": \"<string>\"\n          },\n          {\n            \"asset_id\": \"<integer>\",\n            \"created_at\": \"<string>\",\n            \"description\": \"<string>\",\n            \"is_download_enabled\": \"<boolean>\",\n            \"is_forward_enabled\": \"<boolean>\",\n            \"is_receive_enabled\": \"<boolean>\",\n            \"is_sign_enabled\": \"<boolean>\",\n            \"metadata_url\": \"<string>\",\n            \"mimetype\": \"<string>\",\n            \"name\": \"<string>\",\n            \"sha256\": \"<string>\",\n            \"uuid\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"folder\": \"<string>\",\n        \"files\": [\n          {\n            \"asset_id\": \"<integer>\",\n            \"created_at\": \"<string>\",\n            \"description\": \"<string>\",\n            \"is_download_enabled\": \"<boolean>\",\n            \"is_forward_enabled\": \"<boolean>\",\n            \"is_receive_enabled\": \"<boolean>\",\n            \"is_sign_enabled\": \"<boolean>\",\n            \"metadata_url\": \"<string>\",\n            \"mimetype\": \"<string>\",\n            \"name\": \"<string>\",\n            \"sha256\": \"<string>\",\n            \"uuid\": \"<string>\"\n          },\n          {\n            \"asset_id\": \"<integer>\",\n            \"created_at\": \"<string>\",\n            \"description\": \"<string>\",\n            \"is_download_enabled\": \"<boolean>\",\n            \"is_forward_enabled\": \"<boolean>\",\n            \"is_receive_enabled\": \"<boolean>\",\n            \"is_sign_enabled\": \"<boolean>\",\n            \"metadata_url\": \"<string>\",\n            \"mimetype\": \"<string>\",\n            \"name\": \"<string>\",\n            \"sha256\": \"<string>\",\n            \"uuid\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"status_code\": \"<integer>\"\n}"
+                },
+                {
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/files?archived=<boolean>",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["api", "files"],
+                      "query": [
+                        {
+                          "key": "archived",
+                          "value": "<boolean>",
+                          "description": "If True, returns the archived files."
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                },
+                {
+                  "name": "Authentication error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/files?archived=<boolean>",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["api", "files"],
+                      "query": [
+                        {
+                          "key": "archived",
+                          "value": "<boolean>",
+                          "description": "If True, returns the archived files."
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                },
+                {
+                  "name": "Session Expired",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/files?archived=<boolean>",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["api", "files"],
+                      "query": [
+                        {
+                          "key": "archived",
+                          "value": "<boolean>",
+                          "description": "If True, returns the archived files."
+                        }
+                      ]
+                    }
+                  },
+                  "code": 419,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                },
+                {
+                  "name": "Internal Server Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/files?archived=<boolean>",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["api", "files"],
+                      "query": [
+                        {
+                          "key": "archived",
+                          "value": "<boolean>",
+                          "description": "If True, returns the archived files."
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "folder",
+          "item": [
+            {
+              "name": "add",
+              "item": [
+                {
+                  "name": "Handles the folder creation process.",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "key",
+                          "value": "X-API-KEY",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"folder_name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/folder/add",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["api", "folder", "add"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"folder_name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/folder/add",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "folder", "add"]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"message\": \"<string>\",\n  \"payload\": {\n    \"data\": {\n      \"name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  },\n  \"status_code\": \"<integer>\"\n}"
+                    },
+                    {
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"folder_name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/folder/add",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "folder", "add"]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                    },
+                    {
+                      "name": "Authentication error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"folder_name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/folder/add",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "folder", "add"]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                    },
+                    {
+                      "name": "Session Expired",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"folder_name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/folder/add",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "folder", "add"]
+                        }
+                      },
+                      "code": 419,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                    },
+                    {
+                      "name": "Unprocessable Entity",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"folder_name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/folder/add",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "folder", "add"]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                    },
+                    {
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"folder_name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/folder/add",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["api", "folder", "add"]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "folders",
+          "item": [
+            {
+              "name": "Fetches all the folders owned by the user.",
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "key",
+                      "value": "X-API-KEY",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/folders",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "folders"]
+                }
+              },
+              "response": [
+                {
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/folders",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["api", "folders"]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"message\": \"<string>\",\n  \"status_code\": \"<integer>\",\n  \"payload\": [\n    {\n      \"data\": {\n        \"name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      }\n    },\n    {\n      \"data\": {\n        \"name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      }\n    }\n  ]\n}"
+                },
+                {
+                  "name": "Authentication error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/folders",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["api", "folders"]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                },
+                {
+                  "name": "Session Expired",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/folders",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["api", "folders"]
+                    }
+                  },
+                  "code": 419,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                },
+                {
+                  "name": "Internal Server Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/folders",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["api", "folders"]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"error\": \"<string>\",\n  \"payload\": {},\n  \"status_code\": \"<integer>\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "status",
+          "item": [
+            {
+              "name": "Health check",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/status",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "status"]
+                },
+                "description": "Bla bla bla"
+              },
+              "response": [
+                {
+                  "name": "200 response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/status",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["api", "status"]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-test.toknox.com"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+node_modules
+.serverless
+.env
+.env-local
+.env-deploy
+.env-local-docker
+buckets
+swagger

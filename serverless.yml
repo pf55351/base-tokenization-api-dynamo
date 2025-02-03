@@ -1,0 +1,210 @@
+service: fhp-api
+
+useDotenv: true
+
+package:
+  patterns:
+    - '!node_modules/'
+    - '!.env-*'
+    - '!orm/'
+    - '!.md'
+    - '!.cjs'
+    - '!docker/'
+    - '!docs'
+
+build:
+  esbuild:
+    bundle: true
+
+custom:
+  s3:
+    host: localhost
+    directory: /tmp
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ${opt:region, 'eu-central-1'}
+  stage: ${opt:stage,'dev'}
+  apiGateway:
+    binaryMediaTypes:
+      - '*/*'
+    apiKeys:
+      - ${env:API_KEY_NAME,'api-key-179923'}
+
+  iam:
+    role:
+      name: 'fhp-lambda-tokenization-role'
+      statements:
+        - Effect: 'Allow'
+          Action:
+            - 'ssm:GetParameters'
+            - 'ssm:GetParameter'
+          Resource: 'arn:aws:ssm:${self:provider.region}:${aws:accountId}:parameter/*'
+
+        - Effect: 'Allow'
+          Action:
+            - 's3:ListBucket'
+          Resource:
+            - "arn:aws:s3:::${env:BUCKET_TEMPLATE,''}"
+
+        - Effect: 'Allow'
+          Action:
+            - 's3:PutObject'
+            - 's3:GetObject'
+          Resource:
+            - 'arn:aws:s3:::${env:BUCKET_NAME}/*'
+            - "arn:aws:s3:::${env:BUCKET_TEMPLATE,''}/*"
+
+        - Effect: 'Allow'
+          Action:
+            - 'dynamodb:*'
+          Resource: 'arn:aws:dynamodb:eu-central-1:992382512393:table/*'
+
+  environment:
+    BUCKET_TEMPLATE: ${env:BUCKET_TEMPLATE ,''}
+    BUCKET_NAME: ${env:BUCKET_NAME}
+    CONTRACT_EXPIRE_UNIX_TS: ${env:CONTRACT_EXPIRE_UNIX_TS}
+    PINATA_GATEWAY: ${env:PINATA_GATEWAY}
+    ALGO_EXPLORER: ${env:ALGO_EXPLORER}
+    DATABASE: ${env:DATABASE, 'localhost:8000'}
+
+functions:
+  status:
+    handler: src/handlers/health-check/status.handler
+    events:
+      - http:
+          path: api/status
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Api-Key
+            allowCredentials: false
+          private: false
+
+  download-tokenization-certificate:
+    handler: src/handlers/file/download-tokenization-certificate.handler
+    events:
+      - http:
+          path: api/file/{fileUUID}/certificate/download
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Api-Key
+            allowCredentials: false
+          private: true
+
+  download-tokenization-file:
+    handler: src/handlers/file/download-tokenization-file.handler
+    events:
+      - http:
+          path: api/file/{fileUUID}/download
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Api-Key
+            allowCredentials: false
+          private: true
+
+  retrieve-tokenization:
+    handler: src/handlers/file/get-tokenization.handler
+    events:
+      - http:
+          path: api/file/{fileUUID}
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Api-Key
+            allowCredentials: false
+          private: true
+
+  retrieve-tokenizations:
+    handler: src/handlers/file/get-tokenizations.handler
+    events:
+      - http:
+          path: api/files
+          method: get
+          request:
+            parameters:
+              querystrings:
+                search:
+                  required: false
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Api-Key
+            allowCredentials: false
+          private: true
+
+  verify-tokenization:
+    handler: src/handlers/file/verify-tokenization.handler
+    events:
+      - http:
+          path: api/file/verify
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Api-Key
+            allowCredentials: false
+          private: true
+
+  create-token:
+    handler: src/handlers/file/create-token.handler
+    timeout: 20
+    environment:
+      PINATA_JWT_TOKEN: ${env:PINATA_JWT_TOKEN}
+      MNEMONIC: ${env:MNEMONIC}
+    events:
+      - http:
+          path: api/file/tokenize
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Api-Key
+            allowCredentials: false
+          private: true
+
+  create-folder:
+    handler: src/handlers/folder/create-folder.handler
+    events:
+      - http:
+          path: api/folder/add
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Api-Key
+            allowCredentials: false
+          private: true
+
+  get-folders:
+    handler: src/handlers/folder/get-folders.handler
+    events:
+      - http:
+          path: api/folders
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Api-Key
+            allowCredentials: false
+          private: true
+plugins:
+  - serverless-s3-local
+  - serverless-offline
+  - serverless-plugin-common-excludes
