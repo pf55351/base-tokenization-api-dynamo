@@ -1,3 +1,4 @@
+import { GENERAL_MESSAGES } from '@/config/messages/general-messages';
 import { IS_OFFLINE } from '@/config';
 import { PinataSDK } from 'pinata-web3';
 import { getSSMParameter } from '@/libs/aws/ssm';
@@ -10,7 +11,7 @@ let pinata: PinataSDK;
 
 const getPinataToken = async () => {
   const token = process.env.PINATA_JWT_TOKEN;
-  if (!token) throw new Error('Pinata Token missing');
+  if (!token) throw new Error(GENERAL_MESSAGES.PINATA_TOKEN_MISSING);
   if (IS_OFFLINE) return token;
   return await getSSMParameter(token);
 };

@@ -1,3 +1,4 @@
+import { GENERAL_MESSAGES } from '@/config/messages/general-messages';
 import { IS_OFFLINE } from '@/config';
 import { algodClient } from '@/libs/algorand/config';
 import algosdk from 'algosdk';
@@ -8,7 +9,7 @@ import { uploadJsonToIpfs } from '@/libs/pinata-ipfs';
 
 const getMnemonic = async () => {
   const mnemonic = process.env.MNEMONIC;
-  if (!mnemonic) throw new Error('Mnemonic missing');
+  if (!mnemonic) throw new Error(GENERAL_MESSAGES.MISSING_MNEMONIC);
   if (IS_OFFLINE) return mnemonic;
   return await getSSMParameter(mnemonic);
 };
@@ -18,13 +19,11 @@ export const createNftTokenArc3 = async (
   assetName: string,
   description: string,
   fileStored: boolean,
-  fileHash256: string,
+  fileHash256: string
 ) => {
   const mnemonic = await getMnemonic();
 
   const { addr, sk } = retrieveAlgoAccountFromMnemonic(mnemonic);
-
-
 
   const metadata = {
     name,
@@ -60,5 +59,5 @@ export const createNftTokenArc3 = async (
   await algodClient.sendRawTransaction(signedTxn).do();
   const result = await algosdk.waitForConfirmation(algodClient, txn.txID().toString(), 3);
   const { assetIndex } = result;
-  return { assetIndex, cid,  signer: addr.toString() };
+  return { assetIndex, cid, signer: addr.toString() };
 };

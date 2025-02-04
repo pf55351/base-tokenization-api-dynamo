@@ -1,3 +1,4 @@
+import { GENERAL_MESSAGES } from '@/config/messages/general-messages';
 import crypto from 'crypto';
 
 export const calculateSha256HexFromFile = (content: Buffer) => {
@@ -9,7 +10,7 @@ export const foldSha256 = (sha256: string) => {
   const sha256Bytes = Buffer.from(sha256, 'hex');
 
   if (sha256Bytes.length !== 32) {
-    throw new Error('Invalid SHA-256 hash length. Must be 32 bytes (64 hex chars).');
+    throw new Error(GENERAL_MESSAGES.INVALID_SHA);
   }
 
   // XOR tra i primi 16 byte e gli ultimi 16 byte

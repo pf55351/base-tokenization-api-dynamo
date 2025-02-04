@@ -8,6 +8,7 @@ import {
 } from '@/repositories/file';
 import { calculateSha256HexFromFile, foldSha256 } from '@/utils/blockchain';
 import { ALGO_EXPLORER } from '@/config';
+import { GENERAL_MESSAGES } from '@/config/messages/general-messages';
 import { TOKEN_MESSAGES } from '@/config/messages/token-messages';
 import { TokenRequestData } from '@/config/apiTypes';
 import createError from 'http-errors';
@@ -25,7 +26,7 @@ export const createTokenService = async (
   const fileHashSha256 = calculateSha256HexFromFile(file.content).toString('hex');
   if (isFileStored) {
     const bucket = process.env.BUCKET_NAME;
-    if (!bucket) throw new Error('No bucket found!');
+    if (!bucket) throw new Error(GENERAL_MESSAGES.NO_BUCKET_FOUND);
     const isUploaded = await uploadFileToS3(bucket, fileHashSha256, file.content, file.mimetype);
     if (!isUploaded)
       throw createError.InternalServerError(TOKEN_MESSAGES.FILE_FAILED_TO_UPLOAD_ON_S3);

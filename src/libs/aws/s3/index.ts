@@ -1,5 +1,6 @@
 import { GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { ALLOWED_MIMETYPES } from '@/config/apiTypes';
+import { GENERAL_MESSAGES } from '@/config/messages/general-messages';
 import { IS_OFFLINE } from '@/config';
 import { offlineConfig } from '@/libs/aws/s3/offline-config';
 
@@ -38,7 +39,7 @@ export const uploadFileToS3 = async (
 
 export const retrieveFileToS3 = async (bucket: string, fileKey: string | null) => {
   try {
-    if (fileKey === null) throw new Error('File key not found');
+    if (fileKey === null) throw new Error(GENERAL_MESSAGES.FILE_KEY_NOT_FOUND);
     const s3Client = initS3Client();
     const response = await s3Client.send(
       new GetObjectCommand({
