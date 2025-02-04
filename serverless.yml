@@ -24,6 +24,7 @@ custom:
 provider:
   name: aws
   runtime: nodejs20.x
+  profile: fhp
   region: ${opt:region, 'eu-central-1'}
   stage: ${opt:stage,'dev'}
   apiGateway:
