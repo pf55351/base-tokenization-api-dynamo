@@ -88,22 +88,14 @@ resources:
         TableName: folder-${self:provider.stage}
         BillingMode: PAY_PER_REQUEST
         AttributeDefinitions:
-          - AttributeName: id
-            AttributeType: N
           - AttributeName: uuid
             AttributeType: S
           - AttributeName: name
-            AttributeType: S
+            AttributeType: S  
         KeySchema:
-          - AttributeName: id
+          - AttributeName: uuid
             KeyType: HASH
         GlobalSecondaryIndexes:
-          - IndexName: uuid-index
-            KeySchema:
-              - AttributeName: uuid
-                KeyType: HASH
-            Projection:
-              ProjectionType: ALL
           - IndexName: name-index
             KeySchema:
               - AttributeName: name
@@ -118,8 +110,6 @@ resources:
         TableName: file-${self:provider.stage}
         BillingMode: PAY_PER_REQUEST
         AttributeDefinitions:
-          - AttributeName: id
-            AttributeType: N
           - AttributeName: uuid
             AttributeType: S
           - AttributeName: name
@@ -129,15 +119,9 @@ resources:
           - AttributeName: sha256
             AttributeType: S
         KeySchema:
-          - AttributeName: id
+          - AttributeName: uuid
             KeyType: HASH
         GlobalSecondaryIndexes:
-          - IndexName: uuid-index
-            KeySchema:
-              - AttributeName: uuid
-                KeyType: HASH
-            Projection:
-              ProjectionType: ALL
           - IndexName: name-index
             KeySchema:
               - AttributeName: name

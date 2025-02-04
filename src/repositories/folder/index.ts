@@ -1,10 +1,8 @@
 import { FolderModel, IFolder } from '@/libs/aws/dynamo/models/folder-model';
-import { v4 as uuidv4 } from 'uuid';
 
 export const addFolder = async (name: string) => {
   const folder = new FolderModel({
     name,
-    uuid: uuidv4(),
   });
   await folder.save();
   return folder;

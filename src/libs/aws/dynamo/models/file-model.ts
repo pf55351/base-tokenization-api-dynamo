@@ -3,7 +3,6 @@ import { Item } from 'dynamoose/dist/Item';
 import dynamoose from '@/libs/aws/dynamo';
 
 export interface IFile extends Item {
-  id: number;
   uuid: string;
   name: string;
   description: string;
@@ -21,19 +20,11 @@ export interface IFile extends Item {
 
 const fileSchema = new dynamoose.Schema(
   {
-    id: {
-      type: Number,
-      hashKey: true,
-      default: () => Date.now(),
-    },
     uuid: {
       type: String,
+      hashKey: true,
       required: true,
       default: () => crypto.randomUUID(),
-      index: {
-        type: 'global',
-        name: 'uuid-index',
-      },
     },
     name: {
       type: String,
@@ -77,10 +68,6 @@ const fileSchema = new dynamoose.Schema(
     },
     folder_id: {
       type: Number,
-      index: {
-        type: 'global',
-        name: 'folder_id-index',
-      },
     },
     asset_id: {
       type: Number,
