@@ -4,3 +4,4 @@ export const ALGO_EXPLORER = process.env.ALGO_EXPLORER;
 
 export const FILE_UUID_LENGHT = 36;
 
+export const STAGE = process.env.STAGE;

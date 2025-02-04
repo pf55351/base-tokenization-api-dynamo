@@ -59,7 +59,7 @@ provider:
         - Effect: 'Allow'
           Action:
             - 'dynamodb:*'
-          Resource: 'arn:aws:dynamodb:eu-central-1:992382512393:table/*'
+          Resource: 'arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/*'
 
   environment:
     BUCKET_TEMPLATE: ${env:BUCKET_TEMPLATE ,''}
@@ -67,7 +67,8 @@ provider:
     CONTRACT_EXPIRE_UNIX_TS: ${env:CONTRACT_EXPIRE_UNIX_TS}
     PINATA_GATEWAY: ${env:PINATA_GATEWAY}
     ALGO_EXPLORER: ${env:ALGO_EXPLORER}
-    DATABASE: ${env:DATABASE, 'localhost:8000'}
+    DATABASE: ${env:DATABASE, 'http://localhost:8000'}
+    STAGE: ${self:provider.stage}
 
 functions:
   status:

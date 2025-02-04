@@ -18,6 +18,7 @@ services:
   dynamodb:
     image: amazon/dynamodb-local
     container_name: dynamodb-local
+    command: -jar DynamoDBLocal.jar -sharedDb -dbPath .
     ports:
       - '8000:8000'
     restart: always

@@ -1,4 +1,5 @@
 import { Item } from 'dynamoose/dist/Item';
+import { STAGE } from '@/config';
 import dynamoose from '@/libs/aws/dynamo';
 
 export interface IFile extends Item {
@@ -18,9 +19,6 @@ export interface IFile extends Item {
   created_at: Date;
 }
 
-// Interfaccia per il modello Folder
-
-// Schema Dynamoose per la tabella File
 const fileSchema = new dynamoose.Schema(
   {
     id: {
@@ -102,7 +100,7 @@ const fileSchema = new dynamoose.Schema(
   }
 );
 
-export const FileModel = dynamoose.model<IFile>('file', fileSchema, {
+export const FileModel = dynamoose.model<IFile>(`file-${STAGE}`, fileSchema, {
   create: true,
   waitForActive: true,
 });

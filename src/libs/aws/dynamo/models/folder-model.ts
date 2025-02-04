@@ -1,4 +1,5 @@
 import { Item } from 'dynamoose/dist/Item';
+import { STAGE } from '@/config';
 import dynamoose from '@/libs/aws/dynamo';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -40,7 +41,7 @@ const folderSchema = new dynamoose.Schema(
   }
 );
 
-export const FolderModel = dynamoose.model<IFolder>('folder', folderSchema, {
+export const FolderModel = dynamoose.model<IFolder>(`folder-${STAGE}`, folderSchema, {
   create: true,
   waitForActive: true,
 });
