@@ -83,7 +83,7 @@ Create it as **Secure String**
 Run this command (test or prod stage):
 
 ```
-npm deploy:prod
+npm deploy:prod --stage STAGE --region REGION
 ```
 
 At the end of deploy you can obtain this result:

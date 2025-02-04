@@ -59,8 +59,16 @@ provider:
 
         - Effect: 'Allow'
           Action:
-            - 'dynamodb:*'
-          Resource: 'arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/*'
+            - 'dynamodb:GetItem'
+            - 'dynamodb:Query'     
+            - 'dynamodb:Scan'          
+            - 'dynamodb:PutItem'      
+            - 'dynamodb:DescribeTable'
+          Resource: 
+            - 'arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/file-${self:provider.stage}'
+            - 'arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/folder-${self:provider.stage}'
+            - 'arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/file-${self:provider.stage}/index/*'
+            - 'arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/folder-${self:provider.stage}/index/*'
 
   environment:
     BUCKET_TEMPLATE: ${env:BUCKET_TEMPLATE ,''}
@@ -70,6 +78,84 @@ provider:
     ALGO_EXPLORER: ${env:ALGO_EXPLORER}
     DATABASE: ${env:DATABASE, 'http://localhost:8000'}
     STAGE: ${self:provider.stage}
+
+resources:
+  Resources:
+    FolderTable:
+      Type: AWS::DynamoDB::Table
+      DeletionPolicy: Retain
+      Properties:
+        TableName: folder-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: N
+          - AttributeName: uuid
+            AttributeType: S
+          - AttributeName: name
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: uuid-index
+            KeySchema:
+              - AttributeName: uuid
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+          - IndexName: name-index
+            KeySchema:
+              - AttributeName: name
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+
+    FileTable:
+      Type: AWS::DynamoDB::Table
+      DeletionPolicy: Retain
+      Properties:
+        TableName: file-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: N
+          - AttributeName: uuid
+            AttributeType: S
+          - AttributeName: name
+            AttributeType: S
+          - AttributeName: file_name
+            AttributeType: S
+          - AttributeName: sha256
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: uuid-index
+            KeySchema:
+              - AttributeName: uuid
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+          - IndexName: name-index
+            KeySchema:
+              - AttributeName: name
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+          - IndexName: file_name-index
+            KeySchema:
+              - AttributeName: file_name
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+          - IndexName: sha256-index
+            KeySchema:
+              - AttributeName: sha256
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
 
 functions:
   status:
@@ -206,6 +292,7 @@ functions:
               - X-Api-Key
             allowCredentials: false
           private: true
+
 plugins:
   - serverless-s3-local
   - serverless-offline
