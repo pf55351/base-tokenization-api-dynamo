@@ -1,5 +1,5 @@
+import { IS_OFFLINE, STAGE } from '@/config';
 import { Item } from 'dynamoose/dist/Item';
-import { STAGE } from '@/config';
 import dynamoose from '@/libs/aws/dynamo';
 
 export interface IFile extends Item {
@@ -103,6 +103,6 @@ const fileSchema = new dynamoose.Schema(
 );
 
 export const FileModel = dynamoose.model<IFile>(`file-${STAGE}`, fileSchema, {
-  create: false,
+  create: IS_OFFLINE,
   waitForActive: true,
 });

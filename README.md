@@ -29,7 +29,7 @@ and add `aws_access_key` and `aws_secret_key` whith the right policy.
 
 ```
 [default]
-aws_access_key=
+aws_access_key_id=
 aws_secret_key=
 ```
 
