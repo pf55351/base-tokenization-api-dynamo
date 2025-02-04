@@ -34,7 +34,7 @@ provider:
 
   iam:
     role:
-      name: 'fhp-lambda-tokenization-role'
+      name: 'fhp-lambda-tokenization-role-${self:provider.stage}'
       statements:
         - Effect: 'Allow'
           Action:
