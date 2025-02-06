@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   addToken,
   getToken,
@@ -17,7 +18,7 @@ import { uploadFileToS3 } from '@/libs/aws/s3';
 
 export const createTokenService = async (
   data: TokenRequestData,
-  folderId: number | undefined,
+  folderId: string | undefined,
   folderName: string | undefined
 ) => {
   const { name, description, is_file_stored, file } = data;
@@ -42,7 +43,7 @@ export const createTokenService = async (
     fileHashSha256
   );
 
-  const { assetIndex, signer, cid } = nftToken;
+  const { signer, cid } = nftToken;
 
   const token = await addToken(
     name,
@@ -58,13 +59,17 @@ export const createTokenService = async (
     folderId
   );
 
-  const asset_id = Number(assetIndex);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { id, size, ...rest } = token;
+  const { asset_id, s3, sha256, uuid, file_name } = token;
   return {
-    ...rest,
-    tokenUrl: `${ALGO_EXPLORER}/asset/${asset_id}`,
+    asset_id,
+    description,
     folder: folderName ?? '',
+    is_file_stored: s3,
+    name,
+    sha256,
+    uuid,
+    file_name,
+    token_url: `${ALGO_EXPLORER}/asset/${asset_id}`,
   };
 };
 
@@ -81,17 +86,31 @@ export const verifyService = async (fileContent: Buffer) => {
   const sha256 = calculateSha256HexFromFile(fileContent).toString('hex');
   const token = await verify(sha256);
   if (!token) return null;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { id, folder_id, size, ...response } = token;
-  return { ...response };
+
+  const { asset_id, description, name } = token;
+  return {
+    asset_id,
+    description,
+    token_url: `${ALGO_EXPLORER}/asset/${asset_id}`,
+    name,
+    sha256,
+  };
 };
 
 export const retrieveTokensService = async (search?: string) => {
   const tokens = await getTokens(search);
   const tokensResponse = tokens.map((token) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { id, folder_id, size, ...response } = token;
-    return { ...response };
+    const { description, name, asset_id, s3, sha256, uuid, file_name } = token;
+    return {
+      asset_id,
+      description,
+      is_file_stored: s3,
+      name,
+      sha256,
+      uuid,
+      file_name,
+      token_url: `${ALGO_EXPLORER}/asset/${asset_id}`,
+    };
   });
 
   return tokensResponse;
@@ -100,7 +119,7 @@ export const retrieveTokensService = async (search?: string) => {
 export const retrieveTokenService = async (fileUUID: string) => {
   const token = await getToken(fileUUID);
   if (!token) return undefined;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { id, folder_id, size, ...response } = token;
+
+  const { folder_id, size, ...response } = token;
   return { ...response };
 };
