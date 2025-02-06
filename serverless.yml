@@ -24,7 +24,6 @@ custom:
 provider:
   name: aws
   runtime: nodejs20.x
-  profile: fhp
   region: ${opt:region, 'eu-central-1'}
   stage: ${opt:stage,'dev'}
   apiGateway:
@@ -60,11 +59,11 @@ provider:
         - Effect: 'Allow'
           Action:
             - 'dynamodb:GetItem'
-            - 'dynamodb:Query'     
-            - 'dynamodb:Scan'          
-            - 'dynamodb:PutItem'      
+            - 'dynamodb:Query'
+            - 'dynamodb:Scan'
+            - 'dynamodb:PutItem'
             - 'dynamodb:DescribeTable'
-          Resource: 
+          Resource:
             - 'arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/file-${self:provider.stage}'
             - 'arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/folder-${self:provider.stage}'
             - 'arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/file-${self:provider.stage}/index/*'
@@ -73,10 +72,12 @@ provider:
   environment:
     BUCKET_TEMPLATE: ${env:BUCKET_TEMPLATE ,''}
     BUCKET_NAME: ${env:BUCKET_NAME}
-    CONTRACT_EXPIRE_UNIX_TS: ${env:CONTRACT_EXPIRE_UNIX_TS}
+    CONTRACT_END_UNIX_TS: ${env:CONTRACT_END_UNIX_TS}
     PINATA_GATEWAY: ${env:PINATA_GATEWAY}
     ALGO_EXPLORER: ${env:ALGO_EXPLORER}
     DATABASE: ${env:DATABASE, 'http://localhost:8000'}
+    TOKENIZATIONS_LIMIT: ${env:TOKENIZATIONS_LIMIT}
+    CONTRACT_START_UNIX_TS: ${env:CONTRACT_START_UNIX_TS}
     STAGE: ${self:provider.stage}
 
 resources:
@@ -90,6 +91,8 @@ resources:
         AttributeDefinitions:
           - AttributeName: uuid
             AttributeType: S
+          - AttributeName: created_at
+            AttributeType: N  
           - AttributeName: name
             AttributeType: S  
         KeySchema:
@@ -102,6 +105,13 @@ resources:
                 KeyType: HASH
             Projection:
               ProjectionType: ALL
+
+          - IndexName: created_at-index
+            KeySchema:
+              - AttributeName: created_at
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL    
 
     FileTable:
       Type: AWS::DynamoDB::Table
@@ -118,6 +128,8 @@ resources:
             AttributeType: S
           - AttributeName: sha256
             AttributeType: S
+          - AttributeName: created_at
+            AttributeType: N 
         KeySchema:
           - AttributeName: uuid
             KeyType: HASH
@@ -140,6 +152,14 @@ resources:
                 KeyType: HASH
             Projection:
               ProjectionType: ALL
+
+          - IndexName: created_at-index
+            KeySchema:
+              - AttributeName: created_at
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+              
 
 functions:
   status:
@@ -184,19 +204,19 @@ functions:
             allowCredentials: false
           private: true
 
-  retrieve-tokenization:
-    handler: src/handlers/file/get-tokenization.handler
-    events:
-      - http:
-          path: api/file/{fileUUID}
-          method: get
-          cors:
-            origin: '*'
-            headers:
-              - Content-Type
-              - X-Api-Key
-            allowCredentials: false
-          private: true
+  # retrieve-tokenization:
+  #   handler: src/handlers/file/get-tokenization.handler
+  #   events:
+  #     - http:
+  #         path: api/file/{fileUUID}
+  #         method: get
+  #         cors:
+  #           origin: '*'
+  #           headers:
+  #             - Content-Type
+  #             - X-Api-Key
+  #           allowCredentials: false
+  #         private: true
 
   retrieve-tokenizations:
     handler: src/handlers/file/get-tokenizations.handler
