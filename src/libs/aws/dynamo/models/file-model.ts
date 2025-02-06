@@ -22,9 +22,17 @@ const fileSchema = new dynamoose.Schema(
   {
     uuid: {
       type: String,
-      hashKey: true,
       required: true,
-      default: () => crypto.randomUUID(),
+      hashKey: true,
+    },
+    created_at: {
+      type: Number,
+      required: true,
+      default: () => Date.now(),
+      index: {
+        type: 'global',
+        name: 'created_at-index',
+      },
     },
     name: {
       type: String,
@@ -67,7 +75,7 @@ const fileSchema = new dynamoose.Schema(
       default: true,
     },
     folder_id: {
-      type: Number,
+      type: String,
     },
     asset_id: {
       type: Number,
@@ -82,10 +90,7 @@ const fileSchema = new dynamoose.Schema(
     },
   },
   {
-    timestamps: {
-      createdAt: 'created_at',
-    },
-    saveUnknown: true,
+    saveUnknown: false,
   }
 );
 

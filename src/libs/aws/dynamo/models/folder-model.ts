@@ -1,7 +1,6 @@
 import { IS_OFFLINE, STAGE } from '@/config';
 import { Item } from 'dynamoose/dist/Item';
 import dynamoose from '@/libs/aws/dynamo';
-import { v4 as uuidv4 } from 'uuid';
 
 export interface IFolder extends Item {
   uuid: string;
@@ -14,7 +13,15 @@ const folderSchema = new dynamoose.Schema(
       type: String,
       required: true,
       hashKey: true,
-      default: () => uuidv4(),
+    },
+    created_at: {
+      type: Number,
+      required: true,
+      default: () => Date.now(),
+      index: {
+        type: 'global',
+        name: 'created_at-index',
+      },
     },
     name: {
       type: String,
@@ -26,8 +33,7 @@ const folderSchema = new dynamoose.Schema(
     },
   },
   {
-    timestamps: true,
-    saveUnknown: true,
+    saveUnknown: false,
   }
 );
 
