@@ -9,6 +9,7 @@ import { TOKEN_MESSAGES } from '@/config/messages/token-messages';
 import { TokenRequestData } from '@/config/apiTypes';
 import { baseCreateTokenValidationRules } from '@/utils/validation-rules';
 import checkExpire from '@/middlewares/check-expire';
+import checkTokenizationsLimit from '@/middlewares/check-tokenizations-limit';
 import createError from 'http-errors';
 import { createTokenSchema } from '@/config/schemas.ts/tokens-schema';
 import doNotWaitForEmptyEventLoop from '@middy/do-not-wait-for-empty-event-loop';
@@ -27,7 +28,6 @@ const createTokenRoute = async (event: APIGatewayEvent) => {
   try {
     const body = event.body as unknown as TokenRequestData;
 
-    let folderId: number | undefined;
     let folderName: string | undefined;
 
     //Checks
@@ -44,12 +44,11 @@ const createTokenRoute = async (event: APIGatewayEvent) => {
     if (body.folder_uuid) {
       const folder = await getFolderIdByUUID(body.folder_uuid);
       if (!folder) throw createError.BadRequest(TOKEN_MESSAGES.FILE_TOKENIZE_FOLDER_NOT_FOUND);
-      folderId = folder.id;
       folderName = folder.name;
     }
 
     //Engine
-    const res = await createTokenService(body, folderId, folderName);
+    const res = await createTokenService(body, body.folder_uuid, folderName);
 
     return successResponse(TOKEN_MESSAGES.FILE_TOKENIZE_SUCCESS, res);
   } catch (error) {
@@ -61,6 +60,7 @@ const createTokenRoute = async (event: APIGatewayEvent) => {
 export const handler = middy()
   .use(doNotWaitForEmptyEventLoop({ runOnError: true }))
   .use(checkExpire())
+  .use(checkTokenizationsLimit())
   .use(httpSecurityHeaders())
   .use(httpHeaderNormalizer())
   .use(httpMultipartBodyParser())
