@@ -2,10 +2,10 @@ import { TokenRequestData, mimeTypes } from '@/config/apiTypes';
 import { TOKEN_MESSAGES } from '@/config/messages/token-messages';
 import createError from 'http-errors';
 
-const MAX_FILE_SIZE = 10000000 as const; 
+const MAX_FILE_SIZE = 10000000 as const;
 export const baseCreateTokenValidationRules = (request: TokenRequestData) => {
   const { name, description, file } = request;
-  const fileSize = file.content.length
+  const fileSize = file.content.length;
   if (name.length < 3) {
     throw createError.BadRequest(TOKEN_MESSAGES.FILE_TOKENIZE_FILE_NAME_BELOW_MIN_LENGTH);
   }
@@ -17,8 +17,10 @@ export const baseCreateTokenValidationRules = (request: TokenRequestData) => {
   }
 
   if (!mimeTypes.includes(file.mimetype))
-    throw createError.BadRequest(TOKEN_MESSAGES.FILE_TOKENIZE_INVALID_MIMETYPE);
+    throw createError.BadRequest(
+      `${TOKEN_MESSAGES.FILE_TOKENIZE_INVALID_MIMETYPE}: ${file.mimetype}`
+    );
 
-   if (fileSize > MAX_FILE_SIZE)
-    throw createError.BadRequest(TOKEN_MESSAGES.FILE_SIZE_EXCEEDS_MAX_SIZE); 
+  if (fileSize > MAX_FILE_SIZE)
+    throw createError.BadRequest(TOKEN_MESSAGES.FILE_SIZE_EXCEEDS_MAX_SIZE);
 };
