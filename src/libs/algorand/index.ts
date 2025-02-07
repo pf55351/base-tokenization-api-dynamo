@@ -61,3 +61,42 @@ export const createNftTokenArc3 = async (
   const { assetIndex } = result;
   return { assetIndex, cid, signer: addr.toString() };
 };
+
+export const createNotarization = async (
+  name: string,
+  description: string,
+  fileStored: boolean,
+  fileHash256: string
+) => {
+  const mnemonic = await getMnemonic();
+
+  const { addr, sk } = retrieveAlgoAccountFromMnemonic(mnemonic);
+
+  const sign = Buffer.from(algosdk.signBytes(new TextEncoder().encode(fileHash256), sk)).toString(
+    'hex'
+  );
+
+  const notarization = {
+    name,
+    description,
+    fileStored: fileStored ? 'true' : 'false',
+    fileHash256,
+    signer: addr.toString(),
+    sign,
+  };
+
+  const suggestedParams = await algodClient.getTransactionParams().do();
+
+  const txn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
+    suggestedParams,
+    sender: addr,
+    receiver: addr,
+    amount: 0,
+    note: new TextEncoder().encode(JSON.stringify(notarization)),
+  });
+
+  const signedTxn = txn.signTxn(sk);
+  await algodClient.sendRawTransaction(signedTxn).do();
+  await algosdk.waitForConfirmation(algodClient, txn.txID().toString(), 3);
+  return { sign, signer: addr.toString(), txId: txn.txID() };
+};
