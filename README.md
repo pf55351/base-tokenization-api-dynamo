@@ -59,7 +59,7 @@ Create an `.env` file with these parameters that are public:
 
 ```
 PINATA_GATEWAY = ''
-CONTRACT_EXPIRE_UNIX_TS= ''
+CONTRACT_END_UNIX_TS= ''
 BUCKET_NAME=''
 BUCKET_TEMPLATE=''
 ALGO_EXPLORER=
