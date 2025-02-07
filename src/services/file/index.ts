@@ -59,6 +59,8 @@ export const createTokenService = async (
     folderId
   );
 
+  if (!token) throw createError.InternalServerError(TOKEN_MESSAGES.FILE_FAILED_TO_STORE_ON_DB);
+
   const { asset_id, s3, sha256, uuid, file_name } = token;
   return {
     asset_id,
@@ -99,17 +101,20 @@ export const verifyService = async (fileContent: Buffer) => {
 
 export const retrieveTokensService = async (search?: string) => {
   const tokens = await getTokens(search);
-  const tokensResponse = tokens.map((token) => {
-    const { description, name, asset_id, s3, sha256, uuid, file_name } = token;
+  const tokensResponse = tokens?.map((token) => {
+    const { description, name, asset_id, s3, sha256, uuid, file_name, mimetype, created_at } =
+      token;
     return {
       asset_id,
       description,
       is_file_stored: s3,
+      mimetype,
       name,
       sha256,
       uuid,
       file_name,
       token_url: `${ALGO_EXPLORER}/asset/${asset_id}`,
+      created_at,
     };
   });
 

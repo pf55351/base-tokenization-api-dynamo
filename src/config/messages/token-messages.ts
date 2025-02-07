@@ -21,6 +21,7 @@ const TOKEN_MESSAGES = {
   FILE_UUID_NOT_FOUND: 'File uuid not found.',
   TOKEN_NOT_FOUND: 'File not found.',
   FILE_NOT_IN_STORAGE: 'File not saved on S3.',
+  FILE_FAILED_TO_STORE_ON_DB: 'File failed to store on databse',
 };
 
 export { TOKEN_MESSAGES };
