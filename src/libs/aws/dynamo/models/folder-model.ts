@@ -15,7 +15,7 @@ const folderSchema = new dynamoose.Schema(
       hashKey: true,
     },
     created_at: {
-      type: Number,
+      type: Date,
       required: true,
       default: () => Date.now(),
       index: {
