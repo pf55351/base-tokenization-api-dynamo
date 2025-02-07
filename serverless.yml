@@ -79,6 +79,7 @@ provider:
     TOKENIZATIONS_LIMIT: ${env:TOKENIZATIONS_LIMIT}
     CONTRACT_START_UNIX_TS: ${env:CONTRACT_START_UNIX_TS}
     STAGE: ${self:provider.stage}
+    ALGO_NODE: ${env:ALGO_NODE}
 
 resources:
   Resources:

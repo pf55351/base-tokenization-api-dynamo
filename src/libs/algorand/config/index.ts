@@ -1,7 +1,9 @@
 import algosdk from 'algosdk';
 
 const algodToken = '';
-const algodServer = 'https://testnet-api.4160.nodely.dev';
-const algodPort = 443;
+const algodServer = process.env.ALGO_NODE;
+//const algodPort = 443;
 
-export const algodClient = new algosdk.Algodv2(algodToken, algodServer, algodPort);
+if (!algodServer) throw new Error('No Algo Node available');
+
+export const algodClient = new algosdk.Algodv2(algodToken, algodServer);
